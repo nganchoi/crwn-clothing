@@ -1,4 +1,4 @@
-import { Children, useState } from "react";
+import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
@@ -16,12 +16,11 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
-function SignupForm() {
+function SignUpForm() {
   const [formFiels, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFiels;
 
-  console.log(formFiels);
-  const resetFormField = () => {
+  const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
@@ -38,7 +37,7 @@ function SignupForm() {
         password
       );
       await createUserDocumentFromAuth(user, { displayName });
-      resetFormField();
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("cannot create user, email already in use");
@@ -46,7 +45,7 @@ function SignupForm() {
     }
   };
 
-  const handlechange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFiels, [name]: value });
@@ -61,7 +60,7 @@ function SignupForm() {
           label="displayName"
           type="text"
           required
-          onChange={handlechange}
+          onChange={handleChange}
           name="displayName"
           value={displayName}
         />
@@ -70,7 +69,7 @@ function SignupForm() {
           label="Email"
           type="email"
           required
-          onChange={handlechange}
+          onChange={handleChange}
           name="email"
           value={email}
         />
@@ -79,7 +78,7 @@ function SignupForm() {
           label="password"
           type="password"
           required
-          onChange={handlechange}
+          onChange={handleChange}
           name="password"
           value={password}
         />
@@ -88,7 +87,7 @@ function SignupForm() {
           label="confirmPassword"
           type="password"
           required
-          onChange={handlechange}
+          onChange={handleChange}
           name="confirmPassword"
           value={confirmPassword}
         />
@@ -97,4 +96,4 @@ function SignupForm() {
     </div>
   );
 }
-export default SignupForm;
+export default SignUpForm;
