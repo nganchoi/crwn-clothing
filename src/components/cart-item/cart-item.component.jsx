@@ -1,17 +1,24 @@
-import "./cart-item.styles.scss";
+import "./cart-item.styles.jsx";
+import {
+  CartItemContainer,
+  ItemDetails,
+  NameDetails,
+  Img,
+  Price,
+} from "./cart-item.styles.jsx";
 
 const CartItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <div className="cart-item-container">
-      <img src={imageUrl} alt={`${name}`} />
-      <div className="item-details">
-        <span className="name">{name}</span>
-        <span className="price">
+    <CartItemContainer>
+      <Img src={imageUrl} alt={`${name}`} />
+      <ItemDetails>
+        <NameDetails>{name}</NameDetails>
+        <Price>
           {quantity} x ${price}
-        </span>
-      </div>
-    </div>
+        </Price>
+      </ItemDetails>
+    </CartItemContainer>
   );
 };
 export default CartItem;

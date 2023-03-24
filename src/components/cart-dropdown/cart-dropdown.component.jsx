@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "../../contexts/cart.context";
 
-import "./cart-dropdown.styles.scss";
+import {
+  CartDropdownContainer,
+  CartItemDropdown,
+} from "./cart-dropdown.styles";
 import Button from "../button/button.component";
 
 import CartItem from "../cart-item/cart-item.component";
@@ -18,8 +21,8 @@ const CartDropdown = () => {
   };
 
   return (
-    <div className="cart-dropdown-container">
-      <div className="cart-items ">
+    <CartDropdownContainer>
+      <CartItemDropdown>
         {cartItems.length ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
@@ -27,9 +30,9 @@ const CartDropdown = () => {
         ) : (
           <span className="empty-message"></span>
         )}
-      </div>
+      </CartItemDropdown>
       <Button onClick={goToCheckoutHandler}>CHECKOUT</Button>
-    </div>
+    </CartDropdownContainer>
   );
 };
 export default CartDropdown;
